@@ -5,6 +5,14 @@ function selectPlayer(playerName) {
   list.innerText = name;
 
   squad.appendChild(list);
+  const container = document.querySelector("#squad");
+  const matches = container.querySelectorAll("li");
+
+  if (matches.length > 5) {
+    alert("You have selected yout full squad!");
+    squad.removeChild(list);
+    return;
+  }
 }
 
 function selector(elementID, playerName) {
@@ -12,6 +20,29 @@ function selector(elementID, playerName) {
     selectPlayer(playerName);
     this.disabled = true;
   });
+}
+
+function totalExpanse() {
+  const playerExpanse = parseFloat(
+    document.getElementById("player-expanse").innerText
+  );
+  const coachExpanse = parseInt(document.getElementById("coach").value);
+  const managerExpanse = parseInt(document.getElementById("manager").value);
+
+  if (isNaN(coachExpanse)) {
+    alert("Please Enter a valid number");
+    document.getElementById("coach").value = "";
+    return;
+  }
+  if (isNaN(managerExpanse)) {
+    alert("Please Enter a valid number");
+    document.getElementById("manager").value = "";
+
+    return;
+  }
+
+  const totalCost = playerExpanse + coachExpanse + managerExpanse;
+  document.getElementById("total-cost").innerText = totalCost;
 }
 
 selector("btn-messi", "messi");
@@ -34,21 +65,15 @@ document
 
     const costPerPlayer = document.getElementById("costPerPlayer").value;
 
+    if (isNaN(costPerPlayer)) {
+      alert("Please Enter a valid number");
+      document.getElementById("costPerPlayer").value = "";
+      return;
+    }
+
     const playerExpanse = players * costPerPlayer;
     document.getElementById("player-expanse").innerText = playerExpanse;
   });
-
-function totalExpanse() {
-  const playerExpanse = parseFloat(
-    document.getElementById("player-expanse").innerText
-  );
-  const coachExpanse = parseInt(document.getElementById("coach").value);
-  const managerExpanse = parseInt(document.getElementById("manager").value);
-
-  const totalCost = playerExpanse + coachExpanse + managerExpanse;
-  document.getElementById("total-cost").innerText = totalCost;
-  // console.log(coachExpanse);
-}
 
 document.getElementById("total-expanse").addEventListener("click", function () {
   totalExpanse();
