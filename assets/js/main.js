@@ -13,6 +13,7 @@ function selector(elementID, playerName) {
     this.disabled = true;
   });
 }
+
 selector("btn-messi", "messi");
 selector("btn-neymar", "neymar");
 selector("btn-ronaldo", "ronaldo");
@@ -36,3 +37,19 @@ document
     const playerExpanse = players * costPerPlayer;
     document.getElementById("player-expanse").innerText = playerExpanse;
   });
+
+function totalExpanse() {
+  const playerExpanse = parseFloat(
+    document.getElementById("player-expanse").innerText
+  );
+  const coachExpanse = parseInt(document.getElementById("coach").value);
+  const managerExpanse = parseInt(document.getElementById("manager").value);
+
+  const totalCost = playerExpanse + coachExpanse + managerExpanse;
+  document.getElementById("total-cost").innerText = totalCost;
+  // console.log(coachExpanse);
+}
+
+document.getElementById("total-expanse").addEventListener("click", function () {
+  totalExpanse();
+});
