@@ -23,3 +23,16 @@ selector("btn-modrich", "modrich");
 // document.getElementById("squad").addEventListener("click", function (event) {
 //   event.target.parentNode.removeChild(event.target);
 // });
+
+document
+  .getElementById("calculate-expanse")
+  .addEventListener("click", function () {
+    const players = document
+      .getElementById("squad")
+      .getElementsByTagName("li").length;
+
+    const costPerPlayer = document.getElementById("costPerPlayer").value;
+
+    const playerExpanse = players * costPerPlayer;
+    document.getElementById("player-expanse").innerText = playerExpanse;
+  });
